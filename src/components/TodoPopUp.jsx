@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import "../styles/modal.css"
-import Todo from "./Todo";
+import "../styles/modal.css"
+
 
 const TodoPopUp = (props) => {
     const closeOnEscapeKeyDown = (e) => {
@@ -30,24 +31,26 @@ const TodoPopUp = (props) => {
         props.setTodos([...props.todos, {text:props.todoText, title:props.todoTitle,date:props.todoDueDate, id: Math.random() * 100 }])
         props.setTodoText('')
         props.setTodoTitle('')
+        props.onClose()
     }
     
 
   return (
-  <div onClick={props.onClose} className="modal h-screen w-4/5 bg-lightBlue rounded-3xl p-12 mx-auto">
-      <div onClick={e => e.stopPropagation()} className="modal-content">
+  <div className="modal h-5/6 w-8/12 bg-lightBlue rounded-3xl p-8 mx-auto absolute mx-auto left-0 right-0 top-5">
+      <div className="modal-content ">
           <div className="modal-header">
-              <h4 className="modal-title text-darkBlue">
+              <h4 className="modal-title text-darkBlue text-center text-lg">
                   {props.title}
               </h4>
           </div>
-          <div className="modal-body text-darkBlue ">
-                  <input class="block m-1" type="text" placeholder="Title" value={props.todoText} onChange={(e) => props.setTodoText(e.target.value)}/>
-                  <input class="block m-1" type="text" placeholder="Todo"  value={props.todoTitle} onChange={(e) => props.setTodoTitle(e.target.value)}/>
-                  <input type="date" value={props.todoDueDate} onChange={(e) => props.setTodoDueDate(e.target.value)}/>
+          <div className="modal-body text-darkBlue my-5">
+                  <input className="block m-1 bg-lightBlue text-2xl mb-8 max-w-1xl outline-0" type="text" placeholder="Title" value={props.todoTitle} onChange={(e) => props.setTodoTitle(e.target.value)}/>
+                  <textarea className="block m-1 bg-lightBlue mb-12 w-96 h-40 outline-0" type="text" placeholder="Enter your todo here..."  value={props.todoText} onChange={(e) => props.setTodoText(e.target.value)}></textarea>
+                  <label htmlFor="">Set a deadline</label>
+                  <input className="block m-1 bg-lightBlue text-orange outline-0" type="date" value={props.todoDueDate} onChange={(e) => props.setTodoDueDate(e.target.value)}/>
           </div>
           <div className="modal-footer">
-              <button className="button" onClick={props.onClose} onClick={addTodo} >Add</button>
+              <button className="button rounded-full h-16 w-16 bg-blue" onClick={addTodo}  >Add</button>
           </div>
       </div>
       </div>
