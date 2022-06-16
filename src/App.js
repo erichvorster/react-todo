@@ -5,6 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Button from "./components/Button";
 import Todo from "./components/Todo";
 import TodoEditPopUps from "./components/TodoEditPopUps";
+import { motion } from "framer-motion";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -67,15 +68,33 @@ function App() {
   //State for the TodoEditPopup
 
   return (
-    <div className="App bg-lightBlue p-4 ">
-      <div className="todo-container min-h-screen max-w-2xl bg-darkBlue mx-auto rounded-3xl p-8">
-        <h1 className="text-center text-white text-start text-4xl">Todo's</h1>
-        <div className="buttons-container w-full flex justify-around py-12">
+    <div className="App bg-white p-4 mt-12 ">
+      <div className="todo-container min-h-screen max-w-2xl bg-cream mx-auto border border-textDark rounded-3xl p-8">
+        <motion.h1
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, type: "spring" }}
+          className="text-center text-brown text-start text-4xl font-bold mt-3"
+        >
+          Tasci✏️
+        </motion.h1>
+
+        <div className="buttons-container w-full flex justify-around pt-12 pb-6">
+          <Button text="All" />
           <Button text="Today" />
-          <Button text="Next 7 days" />
-          <Button text="Completed" />
+          <Button text="Upcoming" />
         </div>
         <div className="todo-container">
+          <motion.h5
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1, type: "spring" }}
+            className="py-2 text-sm text-textDark"
+          >
+            You currently have
+            <span className="text-orange"> {todos.length} </span>
+            {todos.length === 1 ? "task" : "tasks"}
+          </motion.h5>
           {todos.map((todo) => {
             return (
               <Todo
@@ -122,9 +141,9 @@ function App() {
         ) : (
           <button
             onClick={() => setShow(true)}
-            className="todo-button rounded-full h-16 w-16 bg-blue relative"
+            className="todo-button rounded-lg h-10 w-32 mt-4 relative text-sm text-orange font-semibold bg-cream border border-orange hover:drop-shadow"
           >
-            <AiOutlinePlus className="text-3xl absolute left-4 top-4" />
+            Create Task
           </button>
         )}
       </div>

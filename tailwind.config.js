@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -9,13 +10,14 @@ module.exports = {
       xl: "1440px",
     },
     colors: {
-      darkBlue: "#010920",
-      blue: "#5981e8",
-      lightBlue: "#dce0ef",
-      orange: "#ff8368",
-      grey: "#252e42",
-      white: "#fff",
-      lightGrey:"#808080"
+      white: "#ffffff",
+      cream: "#f7f6f3",
+      gray: "#e8e7e4",
+      brown: "#37352f",
+      textLight: "#e1e1e0",
+      textDark: "#bbbbb9",
+      orange: "#ffa500",
+      transparent: "transparent",
     },
   },
   plugins: [],
