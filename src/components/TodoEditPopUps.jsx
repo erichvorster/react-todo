@@ -40,7 +40,7 @@ useEffect(() => {
           </div>
           <div className="modal-footer absolute bottom-28 right-3 mb-1" >
             <button
-             onClick={(e) =>{e.preventDefault();handleEdit(todoEditing)} } 
+             onClick={(e) =>{(e.preventDefault())(handleEdit(todoEditing))} } 
             className="todo-button rounded-lg h-10 w-32 text-sm text-textDark bg-white  border z-10 border-textLight hover:drop-shadow"
           >
             Edit Task

@@ -6,7 +6,8 @@ import Button from "./components/Button";
 import Todo from "./components/Todo";
 import TodoEditPopUps from "./components/TodoEditPopUps";
 import { motion } from "framer-motion";
-import Filter from "./components/Filter";
+
+import moment from "moment";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -19,7 +20,34 @@ function App() {
   const [editingBody, setEditingBody] = useState("");
   const [editingDate, setEditingDate] = useState("");
   const [todoDate, setTodoDate] = useState("");
-  const [timeline, setTimeline] = useState("");
+  const [timeline, setTimeline] = useState("All");
+  const [filteredTodos, SetFilteredTodos] = useState([]);
+
+  useEffect(() => {
+    let data;
+
+    const todayDateFormated = moment().format("YYYY-MM-DD");
+
+    console.log(todayDateFormated);
+
+    if (timeline === "Today") {
+      data = todos.filter((todo) => todo.date === todayDateFormated);
+    } else if (timeline === "Next 7 days") {
+      data = todos.filter((todo) => {
+        const todoDate = moment(todo.date, "YYYY-MM-DD");
+        const todayDate = moment(todayDateFormated, "YYYY-MM-DD");
+
+        const diffDays = todoDate.diff(todayDate, "days");
+
+        return diffDays >= 0 && diffDays < 7;
+      });
+    } else if (timeline === "All") {
+      data = todos;
+    } else {
+      data = todos.filter((todo) => todo.projectName === timeline);
+    }
+    SetFilteredTodos(data);
+  }, [todos, timeline]);
 
   //Delete todo
   function deleteTodo(id) {
@@ -52,7 +80,7 @@ function App() {
       if (todo.id === id) {
         todo.text = editingText;
         todo.body = editingBody;
-        // todo.date = editingDate;
+        todo.date = editingDate;
       }
       return todo;
     });
@@ -123,8 +151,8 @@ function App() {
             <span className="text-orange"> {todos.length} </span>
             {todos.length === 1 ? "task" : "tasks"}
           </motion.h5>
-          <Filter todos={todos} timeline={timeline} />
-          {todos.map((todo) => {
+
+          {filteredTodos.map((todo) => {
             return (
               <Todo
                 todo={todo}
@@ -162,7 +190,7 @@ function App() {
           editingBody={editingBody}
           editingDate={editingDate}
           setEditingBody={setEditingBody}
-          setEditingDate={setEditingBody}
+          setEditingDate={setEditingDate}
         />
 
         {show ? (
