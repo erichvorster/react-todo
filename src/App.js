@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoPopUp from "./components/TodoPopUp";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import Todo from "./components/Todo";
 import TodoEditPopUps from "./components/TodoEditPopUps";
 import { motion } from "framer-motion";
+import Filter from "./components/Filter";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ function App() {
   const [editingBody, setEditingBody] = useState("");
   const [editingDate, setEditingDate] = useState("");
   const [todoDate, setTodoDate] = useState("");
+  const [timeline, setTimeline] = useState("");
 
   //Delete todo
   function deleteTodo(id) {
@@ -38,7 +40,6 @@ function App() {
   }
 
   //Show edit todo pop up
-
   function showEditPopUp(id) {
     setShowEdit(true);
     setTodoEditing(id);
@@ -63,12 +64,24 @@ function App() {
     setShowEdit(false);
   }
 
-  console.log(editingBody);
+  useEffect(() => {
+    console.log(timeline);
+  }, [timeline]);
+
+  function handleAll() {
+    setTimeline("All");
+  }
+  function handleToday() {
+    setTimeline("Today");
+  }
+  function handleUpcoming() {
+    setTimeline("Next 7 days");
+  }
 
   //State for the TodoEditPopup
 
   return (
-    <div className="App bg-white p-4 mt-12 ">
+    <div className="App bg-textLight p-4 pt-12 pb-12">
       <div className="todo-container min-h-screen max-w-2xl bg-cream mx-auto border border-textDark rounded-3xl p-8">
         <motion.h1
           initial={{ y: 50, opacity: 0 }}
@@ -80,9 +93,24 @@ function App() {
         </motion.h1>
 
         <div className="buttons-container w-full flex justify-around pt-12 pb-6">
-          <Button text="All" />
-          <Button text="Today" />
-          <Button text="Upcoming" />
+          <button
+            className="bg-lightBlue text-textDark text-sm w-44 h-10 border border-textLight rounded-lg py-2 px-6 hover:shadow"
+            onClick={() => handleAll()}
+          >
+            All
+          </button>
+          <button
+            className="bg-lightBlue text-textDark text-sm w-44 h-10 border border-textLight rounded-lg py-2 px-6 hover:shadow"
+            onClick={() => handleToday()}
+          >
+            Today
+          </button>
+          <button
+            className="bg-lightBlue text-textDark text-sm w-44 h-10 border border-textLight rounded-lg py-2 px-6 hover:shadow"
+            onClick={() => handleUpcoming()}
+          >
+            Next 7 days
+          </button>
         </div>
         <div className="todo-container">
           <motion.h5
@@ -95,6 +123,7 @@ function App() {
             <span className="text-orange"> {todos.length} </span>
             {todos.length === 1 ? "task" : "tasks"}
           </motion.h5>
+          <Filter todos={todos} timeline={timeline} />
           {todos.map((todo) => {
             return (
               <Todo

@@ -52,7 +52,7 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
   return (
     <LayoutGroup>
 <motion.div layout="position" initial={{opacity:0,}} animate={{opacity:1 }} transition={{ type:"spring", duration:1}} exit={{opacity:0}} className="modal-container h-96 ">
-  <motion.div className="modal h-96 bg-white rounded-xl border border-textLight mx-8 absolute mx-auto left-0 right-0 top-5 mt-16">
+  <motion.div className="modal h-96 bg-white rounded-xl border border-textLight mx-8 absolute mx-auto left-0 right-0 top-5 mt-20">
     <div className="relative h-full">
        <button className="absolute top-3 font-bold right-0 text-xl h-12 w-12 text-brown" onClick={onClose}><AiOutlineClose /></button>
       <form onSubmit={handleSubmit} className="modal-content p-8 h-full  flex flex-column">

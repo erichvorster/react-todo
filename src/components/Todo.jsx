@@ -15,7 +15,7 @@ const [isOpen, setIsOpen] = useState(false)
     <>
  
   <motion.div initial={{opacity:0, scale:0.95}}  animate={{opacity:1 }} exit={{opacity:0}} layout transition={{layout:{duration:0.5, type:'spring'}}} onClick={() => setIsOpen(!isOpen)} className="todo-container bg-gray text-brown rounded-lg p-4 my-5 relative cursor-pointer hover:drop-shadow">
-    <motion.h3  layout="position"  className='font-semibold'>{todo.text}</motion.h3>
+    <motion.h3 layout="position"  className='font-semibold'>{todo.text}</motion.h3>
      {isOpen && (
       <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.5}} exit={{opacity:0}}>
            <p className='text-xs pt-2 tracking-wide'>{todo.body}</p>

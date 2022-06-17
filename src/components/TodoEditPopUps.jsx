@@ -24,7 +24,7 @@ useEffect(() => {
   return (
   
 <motion.div layout="position" initial={{opacity:0,}} animate={{opacity:1 }} transition={{ type:"spring", duration:1}} exit={{opacity:0}} className="modal-container h-96 w-screen">
-  <div className="modal h-96 bg-white rounded-3xl max-w-2xl mx-5 absolute mx-auto left-0 right-0 top-5 mt-16">
+  <div className="modal h-96 bg-white rounded-3xl max-w-2xl mx-5 absolute mx-auto left-0 right-0 top-5 mt-20">
     <div className="relative h-full">
        <button className="absolute top-0 right-0 h-12 w-12 text-brown" onClick={onClose}><AiOutlineClose /></button>
       <form className="modal-content p-8 h-full  flex flex-column">
