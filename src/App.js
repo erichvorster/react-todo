@@ -7,6 +7,9 @@ import Todo from "./components/Todo";
 import TodoEditPopUps from "./components/TodoEditPopUps";
 import { motion } from "framer-motion";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import moment from "moment";
 
 function App() {
@@ -22,6 +25,42 @@ function App() {
   const [todoDate, setTodoDate] = useState("");
   const [timeline, setTimeline] = useState("All");
   const [filteredTodos, SetFilteredTodos] = useState([]);
+
+  //Toast messages
+
+  const editTodoPop = () =>
+    toast.info("👍 Task has been edited", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const deleteTodoPop = () => {
+    toast.warn("Task deleted", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const completeTodoPop = () => {
+    toast.success("💪 Task completed", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   useEffect(() => {
     let data;
@@ -54,17 +93,15 @@ function App() {
     console.log("click");
     const updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    deleteTodoPop();
   }
 
   //Complete todo
   function completeTodo(id) {
-    const updatedTodos = [...todos].map((todo) => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-    });
+    console.log("click");
+    const updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    completeTodoPop();
   }
 
   //Show edit todo pop up
@@ -90,6 +127,8 @@ function App() {
     setEditingDate("");
     setEditingBody("");
     setShowEdit(false);
+
+    editTodoPop();
   }
 
   useEffect(() => {
@@ -204,6 +243,7 @@ function App() {
           </button>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

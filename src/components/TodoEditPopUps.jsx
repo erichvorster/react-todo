@@ -46,7 +46,7 @@ useEffect(() => {
             Edit Task
           </button>
           </div>
-          <input className="absolute bottom-10 right-40 todo-input block outline-0 p-0 m-0  z-0 text-textLight placeholder:text-textLight" type="date" value={editingDate} onChange={(e) => {setEditingDate(e.target.value)}} />
+          <input className="absolute bottom-10  todo-input block outline-0 p-0 m-0  z-0 " type="date" value={editingDate} onChange={(e) => {setEditingDate(e.target.value)}} />
       </form>
       </div>
       </div>

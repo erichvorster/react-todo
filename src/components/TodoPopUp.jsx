@@ -5,8 +5,21 @@ import { AiOutlineClose } from "react-icons/ai";
 import "./TodoPopUp.css"
 import {motion, LayoutGroup} from 'framer-motion'
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setShow, todoBody, setTodoBody, todoDate, setTodoDate}) => {
+const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setShow, todoBody, setTodoBody, todoDate, setTodoDate, }) => {
+
+    const notify = () => toast.info('✏️Task has been added', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+       
     const closeOnEscapeKeyDown = (e) => {
         if((e.charCode || e.keyCode) === 27){
             onClose()
@@ -47,7 +60,13 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
         setTodoBody("")
         setTodoDate("")
         setShow(false)
+
+        notify()
+
+    
     }
+
+    
 
   return (
     <LayoutGroup>
@@ -62,8 +81,8 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
               </h4>
           </div>
           <div className="modal-body text-textLight my-5">
-                  <input className="todo-input block m-1 text-brown font-bold text-2xl mb-4 max-w-1xl outline-0 placeholder:text-textLight tracking-wider" type="text" placeholder="Untitled" value={todo} onChange={(e) => {setTodo(e.target.value)}} />
-                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-12 w-full h-12 outline-0 placeholder:text-textLight " type="text" placeholder="Enter your todo here..." value={todoBody} onChange={(e) => {setTodoBody(e.target.value)}}></textarea>
+                  <input className="todo-input block m-1 text-brown font-bold text-2xl mb-4 w-full outline-0 placeholder:text-textLight tracking-wider" type="text" placeholder="Untitled" value={todo} onChange={(e) => {setTodo(e.target.value)}} />
+                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-12 w-full h-44 outline-0 placeholder:text-textLight " type="text" placeholder="Enter your todo here..." value={todoBody} onChange={(e) => {setTodoBody(e.target.value)}}></textarea>
                   
           </div>
           <div className="modal-footer absolute bottom-28 right-3 mb-1" >
@@ -74,13 +93,15 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
             Create Task
           </button>
           </div>
-          <input className="date-input absolute bottom-10 right-44 todo-input text-transparent block outline-0 p-0 m-0  z-0  placeholder:text-transparent" type="date" value={todoDate} onChange={(e) => {setTodoDate(e.target.value)}} />
+          <input className="date-input absolute bottom-10  todo-input  block outline-0 p-0 m-0 pr-4  z-0 " type="date" value={todoDate} onChange={(e) => {setTodoDate(e.target.value)}} />
       </form>
+      <ToastContainer/>
       </div>
       </motion.div>
       </motion.div>
       </LayoutGroup>
   )
+       
 };
 
 export default TodoPopUp;
