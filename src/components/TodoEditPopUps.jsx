@@ -34,9 +34,9 @@ useEffect(() => {
               </h4>
           </div>
           <div className="modal-body text-textLight my-5">
-                  <input className="todo-input block m-1 text-brown font-bold text-2xl mb-4 max-w-1xl outline-0 placeholder:text-textLight tracking-wider" type="text" placeholder="Edit task title" value={editingText} onChange={(e) => {setEditingText(e.target.value)}} />
-                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-12 w-full h-12 outline-0 placeholder:text-textLight " type="text" placeholder="Edit task description..." value={editingBody} onChange={(e) => {setEditingBody(e.target.value)}}></textarea>
-                  
+                  <input className="todo-input block m-1 text-brown font-bold text-2xl mb-4 w-full outline-0 placeholder:text-textLight tracking-wider" type="text" placeholder="Edit task title" value={editingText} onChange={(e) => {setEditingText(e.target.value)}} />
+                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-6 w-full h-28 outline-0 placeholder:text-textLight " type="text" placeholder="Edit task description..." value={editingBody} onChange={(e) => {setEditingBody(e.target.value)}}></textarea>
+                  <input className="  todo-input block outline-0 p-0 m-0  z-0 " type="date" value={editingDate} onChange={(e) => {setEditingDate(e.target.value)}} />
           </div>
           <div className="modal-footer absolute bottom-28 right-3 mb-1" >
             <button
@@ -46,7 +46,7 @@ useEffect(() => {
             Edit Task
           </button>
           </div>
-          <input className="absolute bottom-10  todo-input block outline-0 p-0 m-0  z-0 " type="date" value={editingDate} onChange={(e) => {setEditingDate(e.target.value)}} />
+        
       </form>
       </div>
       </div>

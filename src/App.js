@@ -176,7 +176,7 @@ function App() {
             className="bg-lightBlue text-textDark text-sm w-44 h-10 border border-textLight rounded-lg py-2 px-6 hover:shadow"
             onClick={() => handleUpcoming()}
           >
-            Next 7 days
+            <span className="hidden md:inline-block">Next</span> 7 days
           </button>
         </div>
         <div className="todo-container">

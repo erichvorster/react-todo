@@ -38,9 +38,7 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
         return null
     } 
 
-
     function handleSubmit(e){
-
         if(!todo){
             return
         }
@@ -52,18 +50,13 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
             body:todoBody,
             date:todoDate,
             completed:false
-
         }
-
         setTodos([...todos].concat(newTodo))
         setTodo("")
         setTodoBody("")
         setTodoDate("")
         setShow(false)
-
         notify()
-
-    
     }
 
     
@@ -82,18 +75,18 @@ const TodoPopUp = ({show, title, onClose, todo, setTodo, setTodos, todos, setSho
           </div>
           <div className="modal-body text-textLight my-5">
                   <input className="todo-input block m-1 text-brown font-bold text-2xl mb-4 w-full outline-0 placeholder:text-textLight tracking-wider" type="text" placeholder="Untitled" value={todo} onChange={(e) => {setTodo(e.target.value)}} />
-                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-12 w-full h-44 outline-0 placeholder:text-textLight " type="text" placeholder="Enter your todo here..." value={todoBody} onChange={(e) => {setTodoBody(e.target.value)}}></textarea>
-                  
+                  <textarea className="todo-input block m-1 bg-lightBlue text-brown mb-6 w-full h-28 outline-0 placeholder:text-textLight " type="text" placeholder="Enter your todo here..." value={todoBody} onChange={(e) => {setTodoBody(e.target.value)}}></textarea>
+                  <input className="date-input todo-input  block outline-0 p-0 m-0 pr-2  z-0 " type="date" value={todoDate} onChange={(e) => {setTodoDate(e.target.value)}} />
           </div>
           <div className="modal-footer absolute bottom-28 right-3 mb-1" >
             <button
             onClick={handleSubmit}
-            className="todo-button rounded-lg h-10 w-32 text-sm text-orange bg-white  border z-10 border-orange hover:drop-shadow"
+            className="todo-button rounded-lg h-10 w-24 md-w-38 text-sm text-orange bg-white  border z-10 border-orange hover:drop-shadow"
           >
             Create Task
           </button>
           </div>
-          <input className="date-input absolute bottom-10  todo-input  block outline-0 p-0 m-0 pr-4  z-0 " type="date" value={todoDate} onChange={(e) => {setTodoDate(e.target.value)}} />
+          
       </form>
       <ToastContainer/>
       </div>

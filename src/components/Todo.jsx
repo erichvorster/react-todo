@@ -13,8 +13,8 @@ const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
- 
-  <motion.div layout="position" initial={{opacity:0, scale:0.95}}  animate={{opacity:1 }} exit={{opacity:0}} layout transition={{layout:{duration:0.5, type:'spring'}}} onClick={() => setIsOpen(!isOpen)} className="todo-container bg-gray text-brown rounded-lg p-4 my-5 relative cursor-pointer hover:drop-shadow">
+ <motion.div className='hover:drop-shadow'>
+  <motion.div layout="position"  initial={{opacity:0, scale:0.95}}  animate={{opacity:1 }} exit={{opacity:0}} transition={{layout:{duration:0.5, type:'spring'}}} onClick={() => setIsOpen(!isOpen)} className="todo-container bg-gray text-brown rounded-lg p-4 my-5 relative cursor-pointer ">
     <motion.h3 layout="position"  className='font-semibold'>{todo.text}</motion.h3>
      {isOpen && (
       <motion.div layout="position" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.5}} exit={{opacity:0}}>
@@ -24,17 +24,18 @@ const [isOpen, setIsOpen] = useState(false)
     
      )}
   
-    <motion.div className="buttons flex absolute w-20 justify-around right-3 bottom-3 items-center">
-      <motion.div layout="position" >
+    <motion.div  className="buttons flex absolute w-20 justify-around right-3 bottom-3 items-center">
+      <motion.div>
       <AiOutlineClose onClick={() => {handleDelete(todo.id)}}/>
       </motion.div>
-      <motion.div layout="position" >
+      <motion.div>
       <AiOutlineCheck onClick={() => {handleComplete(todo.id)}}/>
       </motion.div>
-      <motion.div layout="position" >
+      <motion.div>
       <AiFillEdit onClick={() => {showEditPopUp(todo.id)}}/>
       </motion.div>
     </motion.div>
+</motion.div>
 </motion.div>
 </>
   )
